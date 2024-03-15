@@ -1,26 +1,55 @@
+// Constants
 const PI = 3.1415;
 const radius = 5;
-const area = PI * radius * radius;
+const minSpacePerPlant = 0.8;
 
-let plants = 20;
+// Calculate maximum capacity of the garden
+const maxCapacity = ~~(PI * radius * radius / minSpacePerPlant);
 
-let week = plants * 2
+// Initial number of plants
+const initialPlants = 20;
 
-let area_plant = 0.8;
+// Predictions for 1, 2, and 3 weeks of growth
+const growth1 = initialPlants * 2;
+const growth2 = growth1 * 2;
+const growth3 = growth2 * 2;
 
-const plant_area = plants* area_plant;
+// Control flow decisions for each week
+let decision1, decision2, decision3;
+const predictedPlants1 = growth1;
+const predictedPlants2 = growth2;
+const predictedPlants3 = growth3;
 
-const per_area = (plant_area / area) * 100;
-
-
-// console.log(per_area);
-
-if (per_area > 80) {
-    console.log("Prune plants to stop growing")
-
-} else if (per_area <= 80 && per_area > 50) {
-    console.log("Just monitor plants")
-
+if (predictedPlants1 > 0.8 * maxCapacity) {
+    decision1 = "Prune";
+} else if (predictedPlants1 >= 0.5 * maxCapacity && predictedPlants1 <= 0.8 * maxCapacity) {
+    decision1 = "Monitor";
 } else {
-    console.log("Plant more plants")
+    decision1 = "Plant more";
 }
+
+if (predictedPlants2 > 0.8 * maxCapacity) {
+    decision2 = "Prune";
+} else if (predictedPlants2 >= 0.5 * maxCapacity && predictedPlants2 <= 0.8 * maxCapacity) {
+    decision2 = "Monitor";
+} else {
+    decision2 = "Plant more";
+}
+
+if (predictedPlants3 > 0.8 * maxCapacity) {
+    decision3 = "Prune";
+} else if (predictedPlants3 >= 0.5 * maxCapacity && predictedPlants3 <= 0.8 * maxCapacity) {
+    decision3 = "Monitor";
+} else {
+    decision3 = "Plant more";
+}
+
+// Display results
+console.log("Predicted plant growth after 1 week:", growth1, "plants");
+console.log("Decision after 1 week:", decision1);
+
+console.log("Predicted plant growth after 2 weeks:", growth2, "plants");
+console.log("Decision after 2 weeks:", decision2);
+
+console.log("Predicted plant growth after 3 weeks:", growth3, "plants");
+console.log("Decision after 3 weeks:", decision3);
